@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "example_package_YOUR_USERNAME_HERE"
+name = "indoquake"
 version = "0.0.1"
 authors = [
-  { name="Example Author", email="author@example.com" },
+  { name="danangfir", email="danangfirmino26@gmail.com" },
 ]
-description = "A small example package"
+description = "A Latest Earthquake Detection Package Taken Based on BMKG | Meteorological, Climatological, and Geophysical Agency"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
