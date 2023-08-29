@@ -5,4 +5,4 @@ A Latest Earthquake Detection Package Taken Based on BMKG | Meteorological, Cli
 > The data is also taken from the [BMKG](https://www.bmkg.go.id/ "earthquake data website")
 
 # Author
-Danang Firmanto
+> Danang Firmanto
