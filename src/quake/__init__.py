@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-from src import quake
-
 
 def ekstrasi_data():
     """
@@ -23,13 +21,13 @@ def ekstrasi_data():
     if content.status_code == 200:
         soup = BeautifulSoup(content.text, 'html.parser')
 
-        result = soup.find('span', {'class': 'waktu'})
-        result = result.text.split(', ')
-        tanggal = result[0]
-        waktu = result[1]
+        hasilt = soup.find('span', {'class': 'waktu'})
+        hasilt = hasilt.text.split(', ')
+        tanggal = hasilt[0]
+        waktu = hasilt[1]
 
-        result = soup.find('div', {'class': 'col-md-6 col-xs-6 gempabumi-detail no-padding'})
-        result = result.findChildren('li')
+        hasilt = soup.find('div', {'class': 'col-md-6 col-xs-6 gempabumi-detail no-padding'})
+        hasilt = hasilt.findChildren('li')
         i = 0
         magnitudo = None
         kedalaman = None
@@ -38,7 +36,7 @@ def ekstrasi_data():
         lokasi = None
         dirasakan = None
 
-        for res in result:
+        for res in hasilt:
             print(i, res)
             if i == 1:
                 magnitudo = res.text
@@ -54,35 +52,29 @@ def ekstrasi_data():
                 dirasakan = res.text
             i = i + 1
 
-        hasil = dict()
-        hasil['tanggal'] = tanggal
-        hasil['waktu'] = waktu
-        hasil['magnitudo'] = magnitudo
-        hasil['kedalaman'] = kedalaman
-        hasil['koordinat'] = {'ls': ls, 'bt': bt}
-        hasil['lokasi'] = lokasi
-        hasil['dirasakan'] = dirasakan
+        hasilt = dict()
+        hasilt['tanggal'] = tanggal
+        hasilt['waktu'] = waktu
+        hasilt['magnitudo'] = magnitudo
+        hasilt['kedalaman'] = kedalaman
+        hasilt['koordinat'] = {'ls': ls, 'bt': bt}
+        hasilt['lokasi'] = lokasi
+        hasilt['dirasakan'] = dirasakan
 
-        return hasil
+        return hasilt
     else:
         return None
 
 
-def tampilkan_data(result):
-    if result is None:
+def tampilkan_data(hasil):
+    if hasil is None:
         print('Tidak bisa Menemukan data gempa terkini')
         return
     print('Gempa Terakhir Berdasarkan BMKG')
-    print(f"Tanggal: {result['tanggal']}")
-    print(f"Waktu: {result['waktu']}")
-    print(f"Magnitudo: {result['magnitudo']}")
-    print(f"kedalaman: {result['kedalaman']}")
-    print(f"koordinat: LS={result['koordinat']['ls']}, BT={result['koordinat']['bt']}")
-    print(f"lokasi: {result['lokasi']}")
-    print(f"dirasakan: {result['dirasakan']}")
-
-
-if __name__ == '__main__':
-    print('APLIKASI UTAMA>>>>>>>>>>>//////////<<<<<<<<<<')
-    result = quake.ekstrasi_data()
-    quake.tampilkan_data(result)
+    print(f"Tanggal: {hasil['tanggal']}")
+    print(f"Waktu: {hasil['waktu']}")
+    print(f"Magnitudo: {hasil['magnitudo']}")
+    print(f"kedalaman: {hasil['kedalaman']}")
+    print(f"koordinat: LS={hasil['koordinat']['ls']}, BT={hasil['koordinat']['bt']}")
+    print(f"lokasi: {hasil['lokasi']}")
+    print(f"dirasakan: {hasil['dirasakan']}")
