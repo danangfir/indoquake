@@ -4,3 +4,4 @@ if __name__ == '__main__':
     print('Data Gempa')
     result = ekstrasi_data()
     tampilkan_data(result)
+
